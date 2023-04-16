@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authors list</title>
+    <style>
+        table, th, td {
+          border:1px solid black;
+        }
+    </style>
+</head>
+<body>
+  <a href="{% url 'bookstore:index' %}">Go to Main</a><br>
+
+  <h1>Authors list:</h1>
+
+  <table style="width:100%">
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Books</th>
+  </tr>
+  {% for author in authors %}
+  <tr>
+    <td>
+        <a href="{% url 'bookstore:author' pk=author.pk %}">{{ author.name }}</a>
+    </td>
+    <td>{{ author.age }}</td>
+    <td>
+        {% for book in author.book_set.all %}
+        {{ book.name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </td>
+  </tr>
+   {% endfor %}
+</table>
+</body>
+</html>

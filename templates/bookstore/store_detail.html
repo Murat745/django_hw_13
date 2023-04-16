@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Store</title>
+</head>
+<body>
+  <h1>Details for {{ store.name }}</h1>
+  <ul>
+      <li>Name: {{ store.name }} </li>
+
+      {% if store.average_price %}
+        <li>Average price in this store: {{ store.average_price|floatformat:2 }}</li>
+      {% endif %}
+      <li>Books:
+      {% for book in store.books.all %}
+         {{ book.name }}
+      {% empty %}
+          <span>No books in this store</span>
+      {% endfor %}
+      </li>
+  </ul>
+
+  <a href="{% url 'bookstore:store_list' %}">Go to stores list</a><br>
+  <a href="{% url 'bookstore:index' %}">Go to Main</a>
+</body>
+</html>
+

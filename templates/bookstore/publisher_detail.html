@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Publisher</title>
+</head>
+<body>
+  <h1>Details for {{ publisher.name }}</h1>
+  <ul>
+      <li>Name: {{ publisher.name }} </li>
+       <li>Books:
+           <ul>{% for book in books %}
+               <li>{{ book }}</li>
+           {% empty %}
+               <li>No books for this publisher</li>
+           {% endfor %}
+          </ul>
+       </li>
+  </ul>
+
+  <a href="{% url 'bookstore:publisher_list' %}">Go to publishers list</a><br>
+  <a href="{% url 'bookstore:index' %}">Go to Main</a>
+</body>
+</html>

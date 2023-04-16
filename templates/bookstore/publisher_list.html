@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All publishers</title>
+    <style>
+        table, th, td {
+          border:1px solid black;
+        }
+    </style>
+</head>
+<body>
+  <a href="{% url 'bookstore:index' %}">Go to Main</a><br>
+
+  <h1>Publishers list:</h1>
+
+  <table style="width:100%">
+  <tr>
+    <th>Name</th>
+    <th>Books</th>
+  </tr>
+  {% for publisher in publishers %}
+  <tr>
+    <td><a href="{% url 'bookstore:publisher' pk=publisher.pk %}">{{ publisher.name }}</a></td>
+    <td>
+        {% for book in publisher.book_set.all %}
+          {{ book.name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </td>
+  </tr>
+  {% endfor %}
+  </table>
+</body>
+</html>

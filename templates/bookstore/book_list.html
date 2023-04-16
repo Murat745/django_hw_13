@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books list</title>
+    <style>
+        table, th, td {
+          border:1px solid black;
+        }
+    </style>
+</head>
+<body>
+  <a href="{% url 'bookstore:index' %}">Go to Main</a><br>
+
+  <h1>Books list:</h1>
+
+   <table style="width:100%">
+  <tr>
+    <th>Name</th>
+    <th>Store</th>
+    <th>Authors</th>
+    <th>Publisher</th>
+    <th>Pubdate</th>
+    <th>Rating</th>
+    <th>Price</th>
+  </tr>
+  {% for book in books %}
+          <tr>
+              <td>
+                <a href="{% url 'bookstore:book' pk=book.pk %}">{{ book.name }}</a>
+              </td>
+              <td>
+              {% for store in book.stores.all %}
+                  {{ store.name }}
+              {% empty %}
+                  <span>No store</span>
+              {% endfor %}
+              </td>
+              <td>
+              {% for author in book.authors.all %}
+                  {{ author.name }}
+              {% endfor %}
+              </td>
+              <td>
+                  {{ book.publisher.name }}
+              </td>
+              <td>{{ book.pubdate }}</td>
+              <td>{{ book.rating }}</td>
+              <td>{{ book.price }}</td>
+          </tr>
+  {% endfor %}
+</table>
+</body>
+</html>
