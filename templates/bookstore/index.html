@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookstore</title>
+</head>
+<body>
+    <h1>Bookstore</h1>
+    <ul>
+        <li><a href="{% url 'bookstore:author_list' %}">Authors list</a></li>
+        <li><a href="{% url 'bookstore:book_list' %}">Books list</a></li>
+        <li><a href="{% url 'bookstore:publisher_list' %}">Publishers list</a></li>
+        <li><a href="{% url 'bookstore:store_list' %}">Stores list</a></li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All stores</title>
+    <style>
+        table, th, td {
+          border:1px solid black;
+        }
+    </style>
+</head>
+<body>
+  <a href="{% url 'bookstore:index' %}">Go to Main</a><br>
+
+  <h1>Stores list:</h1>
+
+  <table style="width:100%">
+  <tr>
+    <th>Name</th>
+    <th>Books</th>
+  </tr>
+  {% for store in stores %}
+  <tr>
+    <td><a href="{% url 'bookstore:store' pk=store.pk %}">{{ store.name }}</a></td>
+    <td>
+      {% for book in store.books.all %}
+        {{ book.name }}
+      {% empty %}
+        <span>No books in this store</span>
+      {% endfor %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+</body>
+</html>
