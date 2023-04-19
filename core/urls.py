@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
     path('bookstore/', include('bookstore.urls')),
+    path('celery_email/', include('celery_email.urls')),
 ]
