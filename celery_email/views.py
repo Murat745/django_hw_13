@@ -1,5 +1,6 @@
 from datetime import timedelta
 
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.utils import timezone
 
@@ -21,6 +22,9 @@ def sender(request):
                 send_email.apply_async(args=(to_email, text_reminder), eta=date_to_remind)
 
                 return redirect('celery_email:success')
+
+            else:
+                return HttpResponse(form.errors['date_to_remind'].as_data())
 
     else:
         form = ReminderForm()
