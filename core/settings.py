@@ -110,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Etc/GMT+3'
 
 USE_I18N = True
 
@@ -136,6 +136,7 @@ INTERNAL_IPS = [
 
 CELERY_BROKER_URL = "redis://localhost:6379"
 CELERY_RESULT_BACKEND = "redis://localhost:6379"
+CELERY_TIMEZONE = TIME_ZONE
 
 CACHES = {
     'default': {
