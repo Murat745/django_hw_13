@@ -2,6 +2,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count, Prefetch
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
 from .forms import BookModelForm
@@ -12,6 +14,7 @@ def index(request):
     return render(request, 'bookstore/index.html')
 
 
+@method_decorator(cache_page(5), name='dispatch')
 class BookListView(ListView):
     model = Book
     template_name = 'bookstore/book_list.html'
@@ -60,6 +63,7 @@ class BookDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('bookstore:book_list')
 
 
+@cache_page(5)
 def author_list(request):
     authors = Author.objects.prefetch_related(Prefetch('book_set', queryset=Book.objects.only('name')))
     return render(request, 'bookstore/author_list.html', {'authors': authors})
