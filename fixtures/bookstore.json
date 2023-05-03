@@ -1,23 +1,5 @@
 [
 {
-  "model": "auth.user",
-  "pk": 1,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$j7nbZWw3p2MuwJjSNpbUlc$oRf+vjkdXzK9X7rGauyfh/A6TwDz+wGMALe5Ymn9+sQ=",
-    "last_login": "2023-04-16T18:53:58.973Z",
-    "is_superuser": true,
-    "username": "ivan",
-    "first_name": "",
-    "last_name": "",
-    "email": "muratov@example.com",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2023-04-16T18:53:33.641Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
   "model": "bookstore.author",
   "pk": 1,
   "fields": {
@@ -16469,6 +16451,21 @@
   }
 },
 {
+  "model": "bookstore.book",
+  "pk": 1001,
+  "fields": {
+    "name": "Winds of winter",
+    "pages": 700,
+    "price": "49.99",
+    "rating": 10.0,
+    "publisher": 3,
+    "pubdate": "2023-05-02",
+    "authors": [
+      1
+    ]
+  }
+},
+{
   "model": "bookstore.store",
   "pk": 1,
   "fields": {
@@ -16822,7 +16819,8 @@
       940,
       952,
       954,
-      956
+      956,
+      1001
     ]
   }
 },
